@@ -6,36 +6,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devmaicon.backend.entities.Estado;
-import com.devmaicon.backend.repositories.EstadoRepository;
+import com.devmaicon.backend.entities.Marca;
+import com.devmaicon.backend.repositories.MarcaRepository;
 
 @Service
-public class EstadoService {
+public class MarcaService {
 
     @Autowired
-    private EstadoRepository repository;
+    private MarcaRepository repository;
 
-    public List<Estado> buscarTodos() {
+    public List<Marca> buscarTodos() {
         return repository.findAll();
     }
 
-    public Estado buscarPorId(Long id) {
+    public Marca buscarPorId(Long id) {
         return repository.findById(id).get();
     }
 
-    public Estado inserir(Estado obj) {
+    public Marca inserir(Marca obj) {
         obj.setDataCriacao(new Date());
-        Estado estadoNovo = repository.saveAndFlush(obj);
-        return estadoNovo;
+        Marca marcaNova = repository.saveAndFlush(obj);
+        return marcaNova;
     }
 
-    public Estado alterar(Estado obj) {
+    public Marca alterar(Marca obj) {
         obj.setDataAtualizacao(new Date());
         return repository.saveAndFlush(obj);
     }
 
     public void remover(Long id) {
-        Estado obj = repository.findById(id).get();
+        Marca obj = repository.findById(id).get();
         repository.delete(obj);
     }
+
 }

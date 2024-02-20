@@ -6,36 +6,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devmaicon.backend.entities.Estado;
-import com.devmaicon.backend.repositories.EstadoRepository;
+import com.devmaicon.backend.entities.Pessoa;
+import com.devmaicon.backend.repositories.PessoaRepository;
 
 @Service
-public class EstadoService {
+public class PessoaService {
 
     @Autowired
-    private EstadoRepository repository;
+    private PessoaRepository repository;
 
-    public List<Estado> buscarTodos() {
+    public List<Pessoa> buscarTodos() {
         return repository.findAll();
     }
 
-    public Estado buscarPorId(Long id) {
+    public Pessoa buscarPorId(Long id) {
         return repository.findById(id).get();
     }
 
-    public Estado inserir(Estado obj) {
+    public Pessoa inserir(Pessoa obj) {
         obj.setDataCriacao(new Date());
-        Estado estadoNovo = repository.saveAndFlush(obj);
-        return estadoNovo;
+        Pessoa PessoaNova = repository.saveAndFlush(obj);
+        return PessoaNova;
     }
 
-    public Estado alterar(Estado obj) {
+    public Pessoa alterar(Pessoa obj) {
         obj.setDataAtualizacao(new Date());
         return repository.saveAndFlush(obj);
     }
 
     public void remover(Long id) {
-        Estado obj = repository.findById(id).get();
+        Pessoa obj = repository.findById(id).get();
         repository.delete(obj);
     }
+
 }

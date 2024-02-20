@@ -6,36 +6,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devmaicon.backend.entities.Estado;
-import com.devmaicon.backend.repositories.EstadoRepository;
+import com.devmaicon.backend.entities.Cidade;
+import com.devmaicon.backend.repositories.CidadeRepository;
 
 @Service
-public class EstadoService {
+public class CidadeService {
 
     @Autowired
-    private EstadoRepository repository;
+    private CidadeRepository repository;
 
-    public List<Estado> buscarTodos() {
+    public List<Cidade> buscarTodos() {
         return repository.findAll();
     }
 
-    public Estado buscarPorId(Long id) {
+    public Cidade buscarPorId(Long id) {
         return repository.findById(id).get();
     }
 
-    public Estado inserir(Estado obj) {
+    public Cidade inserir(Cidade obj) {
         obj.setDataCriacao(new Date());
-        Estado estadoNovo = repository.saveAndFlush(obj);
-        return estadoNovo;
+        Cidade novaCidade = repository.saveAndFlush(obj);
+        return novaCidade;
     }
 
-    public Estado alterar(Estado obj) {
+    public Cidade alterar(Cidade obj) {
         obj.setDataAtualizacao(new Date());
         return repository.saveAndFlush(obj);
     }
 
     public void remover(Long id) {
-        Estado obj = repository.findById(id).get();
+        Cidade obj = repository.findById(id).get();
         repository.delete(obj);
+        ;
     }
 }

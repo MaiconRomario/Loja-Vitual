@@ -9,20 +9,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_estado")
+@Table(name = "tb_categoria")
 @Data
-public class Estado {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
-    private String sigla;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;

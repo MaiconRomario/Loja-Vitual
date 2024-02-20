@@ -1,5 +1,11 @@
 package com.devmaicon.backend.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.devmaicon.backend.entities.Categoria;
+import com.devmaicon.backend.services.CategoriaService;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,42 +16,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.devmaicon.backend.entities.Estado;
-import com.devmaicon.backend.services.EstadoService;
 
 @RestController
-@RequestMapping("/api/estado")
-public class EstadoController {
+@RequestMapping("/api/categorias")
+public class CategoriaController {
 
     @Autowired
-    private EstadoService services;
+    private CategoriaService services;
 
     @GetMapping("/")
-    public List<Estado> buscarTodos() {
+    public List<Categoria> buscarTodos() {
         return services.buscarTodos();
     }
 
     @GetMapping("/{id}")
-    public Estado buscarPorId(@PathVariable Long id) {
+    public Categoria buscarPorId(@PathVariable Long id) {
         return services.buscarPorId(id);
     }
 
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado obj) {
+    public Categoria inserir(@RequestBody Categoria obj) {
         return services.inserir(obj);
     }
 
     @PutMapping("/")
-    public Estado alterar(@RequestBody Estado obj) {
+    public Categoria alterar(@RequestBody Categoria obj) {
         return services.alterar(obj);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable Long id) {
-        services.remover(id);
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        services.remove(id);
         return ResponseEntity.ok().build();
     }
+
 }
