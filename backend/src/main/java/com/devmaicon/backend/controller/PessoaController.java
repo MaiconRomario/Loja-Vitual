@@ -13,33 +13,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devmaicon.backend.entities.Estado;
-import com.devmaicon.backend.services.EstadoService;
+import com.devmaicon.backend.entities.Pessoa;
+
+import com.devmaicon.backend.services.PessoaService;
 
 @RestController
-@RequestMapping("/api/estado")
-public class EstadoController {
+@RequestMapping("/api/pessoa")
+public class PessoaController {
 
     @Autowired
-    private EstadoService services;
+    private PessoaService services;
 
     @GetMapping("/")
-    public List<Estado> buscarTodos() {
+    public List<Pessoa> buscarTodos() {
         return services.buscarTodos();
     }
 
     @GetMapping("/{id}")
-    public Estado buscarPorId(@PathVariable Long id) {
+    public Pessoa buscarPorId(@PathVariable Long id) {
         return services.buscarPorId(id);
     }
 
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado obj) {
+    public Pessoa inserir(@RequestBody Pessoa obj) {
         return services.inserir(obj);
     }
 
     @PutMapping("/")
-    public Estado alterar(@RequestBody Estado obj) {
+    public Pessoa alterar(@RequestBody Pessoa obj) {
         return services.alterar(obj);
     }
 
