@@ -14,15 +14,18 @@ import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_cidade")
+@Table(name = "tb_produto")
 @Data
-public class Cidade {
+public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String descricaoCurta;
+    private String descricaoDetalhada;
+    private Double valorCusto;
+    private Double valorVenda;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
@@ -31,7 +34,11 @@ public class Cidade {
     private Date dataAtualizacao;
 
     @ManyToOne
-    @JoinColumn(name = "idEstado")
-    private Estado estado;
+    @JoinColumn(name = "idMarca")
+    private Marca marca;
+
+    @ManyToOne
+    @JoinColumn(name = "idCategoria")
+    private Categoria categoria;
 
 }
